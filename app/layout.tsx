@@ -50,7 +50,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     name: site.name,
     url: site.url,
     logo: new URL('/brand/icon.png', site.url).toString(),
-    sameAs: [site.tiktok],
+    sameAs: site.social.map((s) => s.url),
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: site.phone,
@@ -65,7 +65,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       image: new URL('/brand/og-image.png', site.url).toString(),
       telephone: site.phone,
       ...(mapsUrl(store) && { hasMap: mapsUrl(store) }),
-      ...(store.tiktok && { sameAs: [store.tiktok.url] }),
+      sameAs: site.social.map((s) => s.url),
       openingHoursSpecification: store.hours.times.map((time) => ({
         '@type': 'OpeningHoursSpecification',
         dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],

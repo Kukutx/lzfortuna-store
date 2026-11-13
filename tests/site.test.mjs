@@ -189,7 +189,7 @@ test('old store address, map link and structured data are published', () => {
   assert.ok(html.includes('"opens":"14:30","closes":"19:30"'));
   assert.ok(html.includes('Domenica chiuso'));
   assert.ok(html.includes('Lun–sab 09:00–13:00 e 14:30–19:30, domenica chiuso'));
-  assert.ok(html.includes('"sameAs":["https://www.tiktok.com/@luisa5558"]'));
+  assert.ok(html.includes('"sameAs":["https://www.facebook.com/luisamao87","https://www.instagram.com/luisamao87","https://www.tiktok.com/@luisa5558"]'));
 });
 
 test('link previews use the approved lockup and unused artwork is not published', () => {
@@ -269,4 +269,14 @@ test('customer-facing copy has no internal or legalistic notes', () => {
   const footer = read('components/subpage-chrome.tsx');
   assert.match(footer, /fullAddress/, 'Inner pages show the store addresses');
   assert.match(footer, /hoursLine/, 'Inner pages show the opening hours');
+});
+
+test('real shop photo, social links and an honest label on illustrative pictures', () => {
+  const html = read('out/index.html');
+  assert.ok(existsSync(new URL('../public/images/negozio-cologno.jpg', import.meta.url)));
+  assert.ok(html.includes('/images/negozio-cologno.jpg'), 'The Cologno store card shows the real shop front');
+  for (const url of ['https://www.facebook.com/luisamao87', 'https://www.instagram.com/luisamao87', 'https://www.tiktok.com/@luisa5558']) {
+    assert.ok(html.includes(url), 'Missing ' + url);
+  }
+  assert.ok(html.includes('Immagine illustrativa'), 'Retouched or stock pictures are labelled as illustrative');
 });
