@@ -275,6 +275,9 @@ test('real shop photo, social links and an honest label on illustrative pictures
   const html = read('out/index.html');
   assert.ok(existsSync(new URL('../public/images/negozio-cologno.jpg', import.meta.url)));
   assert.ok(html.includes('/images/negozio-cologno.jpg'), 'The Cologno store card shows the real shop front');
+  assert.ok(existsSync(new URL('../public/images/negozio-calusco.jpg', import.meta.url)));
+  assert.ok(html.includes('/images/negozio-calusco.jpg'), 'The Calusco store card shows its shop front');
+  assert.ok(html.includes('Foto: Google Maps'), 'A Street View picture keeps its Google attribution');
   for (const url of ['https://www.facebook.com/luisamao87', 'https://www.instagram.com/luisamao87', 'https://www.tiktok.com/@luisa5558']) {
     assert.ok(html.includes(url), 'Missing ' + url);
   }
