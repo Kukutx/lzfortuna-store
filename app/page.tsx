@@ -179,6 +179,9 @@ export default function HomePage() {
                 {store.photo && (
                   <div className="relative -mx-6 -mt-6 mb-6 aspect-[8/5] overflow-hidden bg-neutral-100 md:-mx-9 md:-mt-9 md:mb-8">
                     <Image src={store.photo.src} alt={store.photo.alt} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
+                    {store.photo.credit && (
+                      <span className="absolute bottom-2 right-2 bg-white/90 px-2 py-1 text-sm text-foreground/80">{store.photo.credit}</span>
+                    )}
                   </div>
                 )}
                 <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-foreground/70">{store.city}</p>

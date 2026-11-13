@@ -35,8 +35,8 @@ type Store = {
   tiktok?: { handle: string; url: string };
   /** Name of the store's Google Maps listing (may differ from the shop name), so directions open that listing. */
   googleListing?: string;
-  /** Real photo of the shop, so neighbours recognise it from the street. */
-  photo?: { src: string; alt: string };
+  /** Real photo of the shop, so neighbours recognise it from the street. `credit` is shown on the picture when its owner requires it (Google Street View). */
+  photo?: { src: string; alt: string; credit?: string };
 };
 
 const stores: Store[] = [
@@ -69,6 +69,11 @@ const stores: Store[] = [
     hours: sameHours,
     mainContact: false,
     googleListing: 'LZ Fortuna: Negozio tutto casa + Sartoria',
+    photo: {
+      src: '/images/negozio-calusco.jpg',
+      alt: 'Le vetrine con l’abbigliamento e l’ingresso del negozio in Piazza S. Rocco a Calusco d’Adda',
+      credit: 'Foto: Google Maps',
+    },
     tagline: 'Il negozio storico, da oltre vent’anni',
     highlights: [
       'Emporio con tanti reparti: casa, cucina, scuola, giocattoli e altro',

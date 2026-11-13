@@ -57,7 +57,7 @@
 
 百货品类在 `lib/merchandise.ts` 中维护；`/prodotti/` 仅展示类别及说明，**不显示价格或虚构库存**。
 
-首页两张卡片恢复**图片在上、文字在下**的原版结构。百货配图 `public/images/assortimento-prodotti.jpg` 用几种商品类别的免费图像拼成，不代表门店实拍或实时库存；使用的照片素材来自 Unsplash（服装 photo-1573612664822-d7d347da7b80，厨房 photo-1556911220-bff31c812dba，文具 photo-1513542789411-b6a5d4f31634，玩具 photo-1566576912321-d58ddd7a6088）。裁缝卡片没有 WhatsApp 按钮，黑色 WhatsApp 按钮只在顶部导航栏以及原有联系区域。收到真实门店照片后可替换百货配图。
+首页两张卡片是**图片在上、文字在下**的结构。百货配图 `public/images/assortimento-prodotti.jpg` 用店主提供的店内图（经过 AI 修图）拼成，所以图上标注 “Immagine illustrativa”。裁缝卡片没有 WhatsApp 按钮，黑色 WhatsApp 按钮只在顶部导航栏以及原有联系区域。
 
 构建时会生成意大利语 404 页（`app/not-found.tsx`）、`robots.txt` 和 `sitemap.xml`（`app/robots.ts`、`app/sitemap.ts`）；新增页面时记得加进 sitemap。
 
@@ -72,3 +72,4 @@ GitHub Actions：`ci.yml` 在每个 PR 上检查 lint、类型、构建和测试
 - “Come possiamo aiutarti?” 三个入口会打开带好开头的 WhatsApp 消息（`whatsappWith()`，在 `lib/site.ts`）。
 - 每家店的介绍、卖什么、地址、门店照片（`photo`）都在 `lib/site.ts` 的 `stores` 里维护；Facebook、Instagram、TikTok 两店共用，写在 `site.social`。
 - 门店卡片只放真实照片。经过 AI 修图或来自图库的图片只用作示意，页面上标注 “Immagine illustrativa”。
+- Calusco 老店目前用的是 Google 街景截图（`negozio-calusco.jpg`），Google 要求注明来源，所以图上写 “Foto: Google Maps”（`photo.credit`）。有自己拍的照片后直接替换文件并删掉 `credit`。
