@@ -23,7 +23,7 @@ const t = {
     directions: 'Indicazioni', inquire: 'Scrivici',
     contactTitle: 'Parliamone',
     contactDesc: 'Hai una domanda, cerchi un prodotto o vuoi passare in negozio? Scrivici su WhatsApp o chiamaci: ti risponde direttamente la nostra famiglia.',
-    tiktok: 'Seguici su TikTok',
+    follow: 'Seguici anche su',
     footerDesc: 'Emporio di quartiere e sartoria',
 };
 
@@ -133,11 +133,12 @@ export default function HomePage() {
               <div className="relative aspect-[4/3] w-full overflow-hidden bg-neutral-100">
                 <Image
                   src="/images/assortimento-prodotti.jpg"
-                  alt="Assortimento illustrativo: abbigliamento e accessori, casa e cucina, cartoleria"
+                  alt="Immagine illustrativa del negozio: abbigliamento, cappotti, calze e intimo, accessori e bigiotteria"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"
                 />
+                <span className="absolute bottom-2 left-2 bg-white/90 px-2 py-1 text-sm text-foreground/80">Immagine illustrativa</span>
               </div>
               <div className="flex flex-1 flex-col border-t border-black/10 p-5 text-left md:p-7">
                 <h3 className="mb-3 font-serif text-2xl italic uppercase tracking-[0.04em]">{t.products}</h3>
@@ -175,6 +176,11 @@ export default function HomePage() {
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
             {site.stores.map((store) => (
               <article key={store.id} className="flex flex-col border border-black/15 p-6 md:p-9">
+                {store.photo && (
+                  <div className="relative -mx-6 -mt-6 mb-6 aspect-[8/5] overflow-hidden bg-neutral-100 md:-mx-9 md:-mt-9 md:mb-8">
+                    <Image src={store.photo.src} alt={store.photo.alt} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
+                  </div>
+                )}
                 <p className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-foreground/70">{store.city}</p>
                 <h3 className="font-serif text-4xl tracking-[0.06em]">{store.name}</h3>
                 <p className="mt-2 text-lg leading-7 text-foreground/80">{store.tagline}</p>
@@ -238,9 +244,16 @@ export default function HomePage() {
             <a href={site.whatsapp} target="_blank" rel="noopener noreferrer"
               className="inline-flex min-h-14 items-center justify-center bg-foreground px-8 text-lg font-semibold text-background hover:bg-neutral-800">{t.whatsCta}</a>
             <a href={`tel:${site.phone}`} className="inline-flex min-h-14 items-center justify-center border-2 border-foreground px-8 text-lg font-semibold hover:bg-black/5">{t.callCta}</a>
-            <a href={site.tiktok} target="_blank" rel="noopener noreferrer"
-              className="inline-flex min-h-14 items-center justify-center px-4 text-lg font-semibold underline underline-offset-4">{t.tiktok} ↗</a>
           </div>
+          <p className="mt-8 text-lg text-foreground/80">{t.follow}</p>
+          <ul className="mt-2 flex flex-wrap items-center justify-center gap-x-6">
+            {site.social.map((item) => (
+              <li key={item.label}>
+                <a href={item.url} target="_blank" rel="noopener noreferrer"
+                  className="inline-flex min-h-12 items-center text-lg font-semibold underline underline-offset-4">{item.label} ↗</a>
+              </li>
+            ))}
+          </ul>
         </section>
       </main>
 
@@ -260,7 +273,7 @@ export default function HomePage() {
             <p className="pt-3 text-sm text-foreground/70">© {new Date().getFullYear()} LZ FORTUNA</p>
           </div>
           <nav className="grid grid-cols-2 gap-x-8 text-base md:flex md:flex-col md:gap-1" aria-label="Navigazione a piè di pagina">
-            {[...nav, { href: site.tiktok, label: 'TikTok' }].map((item) => (
+            {[...nav, ...site.social.map((s) => ({ href: s.url, label: s.label }))].map((item) => (
               <a href={item.href} key={item.href} className="py-2 text-foreground/80 hover:text-foreground hover:underline">{item.label}</a>
             ))}
           </nav>

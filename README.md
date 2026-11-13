@@ -70,4 +70,5 @@ GitHub Actions：`ci.yml` 在每个 PR 上检查 lint、类型、构建和测试
 - 正文至少 16px（多数 18px），标签至少 14px，不用很淡的灰字；测试会拦下 `text-xs` 和低对比度文字。
 - 首屏就有“WhatsApp / 打电话”大按钮；手机底部固定联系栏（`components/contact-bar.tsx`）。
 - “Come possiamo aiutarti?” 三个入口会打开带好开头的 WhatsApp 消息（`whatsappWith()`，在 `lib/site.ts`）。
-- 每家店的介绍、卖什么、地址、TikTok 都在 `lib/site.ts` 的 `stores` 里维护。
+- 每家店的介绍、卖什么、地址、门店照片（`photo`）都在 `lib/site.ts` 的 `stores` 里维护；Facebook、Instagram、TikTok 两店共用，写在 `site.social`。
+- 门店卡片只放真实照片。经过 AI 修图或来自图库的图片只用作示意，页面上标注 “Immagine illustrativa”。

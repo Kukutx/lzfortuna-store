@@ -35,6 +35,8 @@ type Store = {
   tiktok?: { handle: string; url: string };
   /** Name of the store's Google Maps listing (may differ from the shop name), so directions open that listing. */
   googleListing?: string;
+  /** Real photo of the shop, so neighbours recognise it from the street. */
+  photo?: { src: string; alt: string };
 };
 
 const stores: Store[] = [
@@ -48,6 +50,7 @@ const stores: Store[] = [
     hours: sameHours,
     mainContact: true,
     googleListing: 'Newmoda',
+    photo: { src: '/images/negozio-cologno.jpg', alt: 'L’insegna Newmoda e la vetrina del negozio in Via Marconi a Cologno Monzese' },
     tagline: 'Il negozio nuovo, piccolo e vicino a casa',
     highlights: [
       'Abbigliamento per tutti i giorni',
@@ -82,6 +85,12 @@ export const site = {
   displayPhone: '366 892 7486',
   whatsapp: 'https://wa.me/393668927486',
   tiktok: 'https://www.tiktok.com/@luisa5558',
+  /** One set of social accounts for both shops. */
+  social: [
+    { label: 'Facebook', url: 'https://www.facebook.com/luisamao87' },
+    { label: 'Instagram', url: 'https://www.instagram.com/luisamao87' },
+    { label: 'TikTok', url: 'https://www.tiktok.com/@luisa5558' },
+  ],
   stores,
 } as const;
 
